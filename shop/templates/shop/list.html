@@ -1,28 +1,28 @@
-{% extends 'shop/../base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block style %}
     img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 100%;
-        width: 100%;
-        max-width: none;
-        max-height: none;
-        object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
     }
 
     .thumbnail3{
-        padding: 0.25rem;
-        background-color: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 0.25rem;
-        max-width: 100%;
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
     }
 
     .center {
-        text-align: center;
-}
+    text-align: center;
+    }
 {% endblock %}
 {% block title %}
     {% if category %}
@@ -31,29 +31,45 @@
         Products
     {% endif %}
 {% endblock %}
-{% block content1 %}
-    {% for product in products %}
-    <div class="col-xs-5 col-md-4">
-    <div class="container">
-        <div style="width: 350px; height: 350px">
-            <a href="{{ product.get_absolute_url }}">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}" class="thumbnail3">
-                {% else %}
-                    <img src="https://picsum.photos/id/3/200/300" class="thumbnail3">
-                {% endif %}
-            </a>
+
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            {% include "inc/_sidebar.html" %}
         </div>
-        <div class="caption center">
-            <h5><a href="{{ product.get_absolute_url }}">{{ product.title}}</a></h5>
+        <div class="col-md-10">
+            <div class="container bootstrap snipets">
+                <br>
+                <div class="row flow-offset-1">
+                    {% for product in products %}
+                        <div class="col-xs-5 col-md-4">
+                            <div class="container">
+                                <div style="width: 350px; height: 350px">
+                                    <a href="{{ product.get_absolute_url }}">
+                                        {% if product.image %}
+                                            <img src="{{ product.image.url }}" class="thumbnail3">
+                                        {% else %}
+                                            <img src="https://picsum.photos/id/3/200/300" class="thumbnail3">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="caption center">
+                                    <h5><a href="{{ product.get_absolute_url }}">{{ product.title}}</a></h5>
+                                </div>
+                                <div>
+                                    <h6>{{ product.description|safe|linebreaks|truncatewords:10 }}</h6>
+                                </div>
+                                <div>
+                                    <h7>{{ product.updated_at|date:"Y-m-d" }}</h7>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div>
-            <h6>{{ product.description|safe|linebreaks|truncatewords:10 }}</h6>
-        </div>
-        <div>
-            <h7>{{ product.updated_at|date:"Y-m-d" }}</h7>
-        </div>
-       </div>
     </div>
-    {% endfor %}
+    </div>
 {% endblock %}

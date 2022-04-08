@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block style %}
+    img {
+    max-width: none;
+    max-height: 400px;
+    }
+
+    .font1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 110%;
+    }
+{% endblock %}
+
+{% block title %}
+    {{ product.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>{{ product.title }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="margin-left 5">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" class="thumbnail3">
+                            {% else %}
+                                <img src="https://picsum.photos/id/3/200/300" class="thumbnail3">
+                            {% endif %}
+                        </div>
+                        <div class="font1">
+                            {{ product.description }}
+                        </div>
+                    <br>
+                        <div class="">
+                            <h4>${{ product.price }}</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                123
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
