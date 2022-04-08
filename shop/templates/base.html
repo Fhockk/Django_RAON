@@ -2,19 +2,110 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+{% block style %}{% endblock %}
+</style>
+
     <meta charset="utf-8"/>
     <title>{% block title %}My shop{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<div id="header">
-    <a href="/" class="logo">My shop</a>
-</div>
-<div id="subheader">
-    <div class="cart">
-        Your cart is empty.
+{% include "inc/_nav.html" %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            {% include "inc/_sidebar.html" %}
+        </div>
+        <div class="col-md-10">
+            <div class="container bootstrap snipets">
+                <br>
+                <div class="row flow-offset-1">
+
+                    {% block content1 %} {% endblock %}
+                    {% comment %}
+                    <div class="col-xs-6 col-md-4">
+       <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/FFB6C1/000000" alt=""></a>
+         <div class="caption">
+           <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+             <del>$24.99</del></span><span class="price sale">$12.49</span>
+         </div>
+       </div></div>
+     {% endcomment %}
+
+                    {% comment %}
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/87CEFA/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+                 <del>$24.99</del></span><span class="price sale">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/FF7F50/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/20B2AA/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+                 <del>$24.99</del></span><span class="price sale">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/8A2BE2/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+                 <del>$24.99</del></span><span class="price sale">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/6495ED/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+                 <del>$24.99</del></span><span class="price sale">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/00008B/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/9932CC/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+                 <del>$24.99</del></span><span class="price sale">$12.49</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="https://via.placeholder.com/350x280/FF69B4/000000" alt=""></a>
+             <div class="caption">
+               <h6><a href="#">Short Sleeve T-Shirt</a></h6><span class="price">
+                 <del>$24.99</del></span><span class="price sale">$12.49</span>
+             </div>
+           </div>
+         </div>
+        {% endcomment %}
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 <div id="content">
     {% block content %}
     {% endblock %}
