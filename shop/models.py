@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 
 class Category(models.Model):
@@ -38,3 +39,11 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.id, self.slug])
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='media/%Y/%m/%d', blank=True)
+
+    def __str__(self):
+        return self.user.username
