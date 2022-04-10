@@ -33,7 +33,7 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
             profile = Profile.objects.create(user=new_user)
-            return render(request, 'account/register.html', {'new_user': new_user})
+            return render(request, 'shop/list.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {'user_form': user_form})
