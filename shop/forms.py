@@ -19,7 +19,7 @@ class UserRegistrationForm(forms.ModelForm):
         return password
 
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 

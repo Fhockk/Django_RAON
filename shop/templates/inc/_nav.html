@@ -17,7 +17,12 @@
         </li>
       </ul>
       <span class="navbar-text">
-        Login
+          {% if request.user.is_authenticated %}
+            Hello {{ request.user.first_name }}
+            <a href="#">Logout</a>
+              {% else %}
+            <a href="{% url 'login' %}">Login</a>
+          {% endif %}
       </span>
     </div>
   </div>

@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Create account</h1>
     <p>Please Sign Up using the following form:</p>
-    <form action="{% url 'product_list' %}" method="post">
+    <form method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
         <button type="submit">Регистрация</button>
