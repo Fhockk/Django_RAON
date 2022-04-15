@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Category, Product, Profile
-from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, ProductForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 
@@ -20,8 +20,8 @@ def product_list(request, category_slug=None):
     return render(request, 'shop/list.html', {'category': category, 'categories': categories, 'products': products})
 
 
-def product_detail(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id, available=True)
     return render(request, 'shop/detail.html', {'product': product})
 
 
@@ -64,4 +64,13 @@ def user_logout(request):
     return redirect('product_list')
 
 
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            product = form.save()
+            return redirect(product)
+    else:
+        form = ProductForm
+    return render(request, 'shop/add_product.html', {'form': form})
 

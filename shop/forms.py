@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Product
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -35,3 +35,8 @@ class ProfileEditForm(forms.ModelForm):
         model = Profile
         fields = ('photo',)
 
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'category', 'image', 'description', 'price']
