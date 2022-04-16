@@ -1,16 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block style %}
-    img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100%;
-    width: 100%;
-    max-width: none;
-    max-height: none;
-    object-fit: cover;
-    }
 
     .thumbnail3{
     padding: 0.25rem;
@@ -49,9 +38,9 @@
                                 <div style="width: 350px; height: 350px">
                                     <a href="{{ product.get_absolute_url }}">
                                         {% if product.image %}
-                                            <img src="{{ product.image.url }}" class="thumbnail3">
+                                            <img src="{{ product.image.url }}" style="display: block;margin-left: auto;margin-right: auto;height: 100%;width: 100%;max-width: none;max-height: none;object-fit: cover;" class="thumbnail3">
                                         {% else %}
-                                            <img src="https://picsum.photos/id/3/200/300" class="thumbnail3">
+                                            <img src="https://picsum.photos/id/3/200/300" style="display: block;margin-left: auto;margin-right: auto;height: 100%;width: 100%;max-width: none;max-height: none;object-fit: cover;" class="thumbnail3">
                                         {% endif %}
                                     </a>
                                 </div>
