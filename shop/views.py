@@ -64,6 +64,7 @@ def user_logout(request):
     return redirect('product_list')
 
 
+@login_required(login_url='/login/')
 def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
