@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -21,6 +22,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='owners', on_delete=models.PROTECT)
     title = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
@@ -42,7 +44,7 @@ class Product(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='media/%Y/%m/%d', blank=True)
 
     def __str__(self):

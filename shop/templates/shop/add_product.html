@@ -7,7 +7,7 @@
 
 {% block content %}
     <h1>Добавить Объявление</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {{ form.as_p }}
         {% csrf_token %}
     <button type="submit">Добавить</button>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Category, Product, Profile
-from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, ProductForm
+from .forms import LoginForm, UserRegistrationForm, ProductForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 
@@ -67,9 +67,11 @@ def user_logout(request):
 @login_required(login_url='/login/')
 def create_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
+            product = form.save(commit=False)
+            product.owner = request.user
+            product.save()
             return redirect(product)
     else:
         form = ProductForm
