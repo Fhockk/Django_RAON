@@ -48,7 +48,7 @@
                                     <h5><a href="{{ product.get_absolute_url }}">{{ product.title}}</a></h5>
                                 </div>
                                 <div>
-                                    <h6>{{ product.description|safe|linebreaks|truncatewords:10 }}</h6>
+                                    <h6>{{ product.description|safe|linebreaks|truncatechars:20 }}</h6>
                                 </div>
                                 <div>
                                     <h7>{{ product.updated_at|date:"Y-m-d" }}</h7>

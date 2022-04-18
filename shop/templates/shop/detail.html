@@ -46,12 +46,18 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        Featured
+                        {{ profile.user }}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="margin-left 5">
+                            {% if profile.photo %}
+                                <img src="{{ profile.photo.url }}" class="thumbnail3">
+                            {% else %}
+                                <img src="https://via.placeholder.com/250" class="thumbnail3">
+                            {% endif %}
+                        </div>
+                        <p class="card-text">(Тут город будет и контактные данные)</p>
+                        <a href="#" class="btn btn-primary">Contact</a>
                     </div>
                 </div>
             </div>

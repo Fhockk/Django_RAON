@@ -20,9 +20,17 @@ class Category(models.Model):
         return reverse('product_list_by_category', args=[self.slug])
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='media/%Y/%m/%d', blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='owners', on_delete=models.PROTECT)
+    owners = models.ForeignKey(Profile, related_name='owners', on_delete=models.PROTECT)
     title = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
@@ -41,11 +49,3 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.id])
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='media/%Y/%m/%d', blank=True)
-
-    def __str__(self):
-        return self.user.username

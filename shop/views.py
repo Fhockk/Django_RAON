@@ -22,7 +22,8 @@ def product_list(request, category_slug=None):
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id, available=True)
-    return render(request, 'shop/detail.html', {'product': product})
+    profile = get_object_or_404(Profile, id=product.owners.id)
+    return render(request, 'shop/detail.html', {'product': product, 'profile': profile})
 
 
 def register(request):
@@ -70,7 +71,8 @@ def create_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
-            product.owner = request.user
+            my_owner = Profile.objects.get(user=request.user)
+            product.owners = my_owner
             product.save()
             return redirect(product)
     else:

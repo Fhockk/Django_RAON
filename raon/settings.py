@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'raon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'raon',
+        'NAME': 'raonew',
         'USER': 'postgres',
         'PASSWORD': '123123',
         'HOST': 'localhost',
