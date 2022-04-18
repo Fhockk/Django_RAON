@@ -32,7 +32,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT)
     owners = models.ForeignKey(Profile, related_name='owners', on_delete=models.PROTECT)
     title = models.CharField(max_length=200, db_index=True)
-    slug = models.SlugField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, blank=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     description = models.TextField(max_length=2000, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
