@@ -23,7 +23,8 @@ def product_list(request, category_slug=None):
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id, available=True)
     profile = get_object_or_404(Profile, id=product.owners.id)
-    return render(request, 'shop/detail.html', {'product': product, 'profile': profile})
+    productnew = Product.objects.filter(available=True, owners_id=product.owners.id)
+    return render(request, 'shop/detail.html', {'products': product, 'profile': profile, 'productnew': productnew})
 
 
 def register(request):

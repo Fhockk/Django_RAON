@@ -17,10 +17,19 @@
     border: 1px;
     overflow-y: scroll;
     }
+
+    .onecardhistory{
+    height: 150px;
+    min-width: 150px;
+    }
+
+    .flexinside{
+    display: flex;
+    }
 {% endblock %}
 
 {% block title %}
-    {{ product.title }}
+    {{ products.title }}
 {% endblock %}
 
 {% block content %}
@@ -29,22 +38,22 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h2>{{ product.title }}</h2>
+                        <h2>{{ products.title }}</h2>
                     </div>
                     <div class="card-body">
                         <div class="margin-left 5">
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}" class="thumbnail3">
+                            {% if products.image %}
+                                <img src="{{ products.image.url }}" class="thumbnail3">
                             {% else %}
                                 <img src="https://picsum.photos/id/3/200/300" class="thumbnail3">
                             {% endif %}
                         </div>
                         <div class="font1">
-                            {{ product.description }}
+                            {{ products.description }}
                         </div>
                         <br>
                         <div class="">
-                            <h4>${{ product.price }}</h4>
+                            <h4>${{ products.price }}</h4>
                         </div>
 
                     </div>
@@ -58,7 +67,7 @@
                     <div class="card-body">
                         <div class="margin-left 5">
                             {% if profile.photo %}
-                                <img src="{{ profile.photo.url }}" class="thumbnail3">
+                                <img src="{{ profile.photo.url }}"  class="thumbnail3">
                             {% else %}
                                 <img src="https://via.placeholder.com/250" class="thumbnail3">
                             {% endif %}
@@ -68,41 +77,37 @@
                     </div>
                 </div>
                 <div class="prokrutka">
+                {% for product in productnew %}
+
+
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 style="text-align: center" class="card-title">{{ product.title }}</h5>
+                            <div class="flexinside">
+                                <div class="onecardhistory">
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" style="display: block;margin-left: auto;margin-right: auto;height: 100%;width: 100%;max-width: none;max-height: none;object-fit: cover;" class="thumbnail3">
+                                    {% else %}
+                                        <img src="https://picsum.photos/id/3/200/300" style="display: block;margin-left: auto;margin-right: auto;height: 100%;width: 100%;max-width: none;max-height: none;object-fit: cover;" class="thumbnail3">
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <div style="margin-left: 15px">
+                                        <p class="card-text">{{ product.description|safe|linebreaks|truncatechars:81 }}</p>
+                                    </div>
+
+                                    <a href="#" style="position: absolute; right: 13px; bottom: 23px" class="btn btn-primary">Открыть</a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+
+                            </div>
+
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
+                {% endfor %}
+
+
 
                 </div>
             </div>
