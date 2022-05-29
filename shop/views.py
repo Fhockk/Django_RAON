@@ -67,6 +67,7 @@ def user_logout(request):
 
 @login_required(login_url='/login/')
 def create_product(request):
+    categories = Category.objects.all()
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -77,5 +78,5 @@ def create_product(request):
             return redirect(product)
     else:
         form = ProductForm
-    return render(request, 'shop/add_product.html', {'form': form})
+    return render(request, 'shop/add_product.html', {'form': form, 'categories': categories})
 

@@ -6,12 +6,72 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Добавить Объявление</h1>
-    <form method="post" enctype="multipart/form-data">
-        {{ form.as_p }}
-        {% csrf_token %}
-    <button type="submit">Добавить</button>
-    </form>
+    {#    <h1>Добавить Объявление</h1>#}
+{#    <form method="post" enctype="multipart/form-data">#}
+{#        {{ form.as_p }}#}
+{#        {% csrf_token %}#}
+{#        <button type="submit">Добавить</button>#}
+{#    </form>#}
+    <!-- Section: Design Block -->
+    <section class="text-center">
+        <!-- Background image -->
+        <div class="p-5 bg-image" style="
+        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+        height: 130px;
+        "></div>
+        <!-- Background image -->
+        <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(30px);
+        ">
+            <div class="card-body py-5 px-md-5">
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bold mb-5">Добавить объявление</h2>
+
+                        <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="form-outline mb-4">
+                                <input type="text" class="form-control" placeholder="Title" name="title"/>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <select name="category" class="form-select form-select-sm" aria-label=".form-select-sm example">
+{#                                    <option selected> Выберите Категорию</option>#}
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}"> {{ category }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input">
+                            </div>
+
+                            <div class="form-outline mb-4 mt-4">
+                                <input type="text" class="form-control" placeholder="Description" name="description" maxlength="2000"/>
+                            </div>
+
+
+
+                            <div class="form-outline mb-4">
+                                <input type="number" class="form-control" name="price" placeholder="Price"/>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4">
+                                Добавить объявление
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
 {% endblock %}
 
 
